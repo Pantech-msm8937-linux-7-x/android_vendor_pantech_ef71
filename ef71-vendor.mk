@@ -626,8 +626,13 @@ PRODUCT_PACKAGES += \
     IWlanService
 endif
 
-# Adreno and display blobs (LA.UM.9.6.3.r1-06200-89xx.0)
-$(call inherit-product, vendor/pantech/ef71/graphics/graphics-vendor.mk)
+# C2D, which mm-camera's c2d module and imglib open by name, with the GSL
+# library it links (LA.UM.9.6.3.r1-06200-89xx.0)
+PRODUCT_COPY_FILES += \
+    vendor/pantech/ef71/proprietary/vendor/lib/libC2D2.so:$(TARGET_COPY_OUT_VENDOR)/lib/libC2D2.so \
+    vendor/pantech/ef71/proprietary/vendor/lib/libc2d30-a3xx.so:$(TARGET_COPY_OUT_VENDOR)/lib/libc2d30-a3xx.so \
+    vendor/pantech/ef71/proprietary/vendor/lib/libc2d30_bltlib.so:$(TARGET_COPY_OUT_VENDOR)/lib/libc2d30_bltlib.so \
+    vendor/pantech/ef71/proprietary/vendor/lib/libgsl.so:$(TARGET_COPY_OUT_VENDOR)/lib/libgsl.so
 
 # EF71 specific firmware: GPU microcode from LA.UM.9.6.3 for msm-4.19
 # (the msm-3.18 a530_pfp.fw left the CP stuck on msm-4.19), NFC and the
